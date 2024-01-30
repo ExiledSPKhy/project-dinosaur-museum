@@ -5,10 +5,11 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all dinosaurs.
 */
+const dinosaurs = require("../data/dinosaurs");
 const exampleDinosaurData = require("../data/dinosaurs");
 // Do not change the line above.
 
-/**
+/**p
  * getLongestDinosaur()
  * ---------------------
  * Returns an object with the longest dinosaur from the list. Converts from meters to feet.
@@ -22,7 +23,16 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  getLongestDinosaur(dinosaurs);
  *  //> { Brachiosaurus: 98.43 }
  */
-function getLongestDinosaur(dinosaurs) {}
+function getLongestDinosaur(dinosaurs) {
+  let sortedDinos = dinosaurs.sort((a,b) => a.lengthInMeters - b.lengthInMeters)
+   let longestDinoinMeters = sortedDinos[sortedDinos.length - 1];
+   const {name,lengthInMeters} = longestDinoinMeters
+   let lengthInfeet = lengthInMeters * 3.281;
+   return {[name]: lengthInfeet};
+
+  
+}
+console.log(getLongestDinosaur(exampleDinosaurData));
 
 /**
  * getDinosaurDescription()
@@ -44,7 +54,23 @@ function getLongestDinosaur(dinosaurs) {}
  *  getDinosaurDescription(dinosaurs, "incorrect-id");
  *  //> "A dinosaur with an ID of 'incorrect-id' cannot be found."
  */
-function getDinosaurDescription(dinosaurs, id) {}
+function getDinosaurDescription(dinosaurs, id) {
+  let findDino = dinosaurs.find(x => x.dinosaurId === id);
+    if(findDino){
+    const { name, pronunciation,info } = findDino
+    console.log(`${name} ${pronunciation} ${info}`);
+    // return `${name} ${pronunciation} ${info}`;
+
+  }else{
+    // return `A dinosaur with an ID of '${id}' cannot be found.`;
+    console.log(`A dinosaur with an ID of '${id}' cannot be found.`);
+  };
+  }
+  getDinosaurDescription(exampleDinosaurData,"U9vuZmgKwUr")
+
+
+
+
 
 /**
  * getDinosaursAliveMya()
@@ -78,3 +104,4 @@ module.exports = {
   getDinosaurDescription,
   getDinosaursAliveMya,
 };
+
