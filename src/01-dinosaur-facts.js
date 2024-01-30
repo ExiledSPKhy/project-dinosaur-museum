@@ -24,7 +24,7 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  //> { Brachiosaurus: 98.43 }
  */
 function getLongestDinosaur(dinosaurs) {
-  let sortedDinos = dinosaurs.sort((a,b) => a.lengthInMeters - b.lengthInMeters)
+  let sortedDinos = dinosaurs.slice().sort((a,b) => a.lengthInMeters - b.lengthInMeters)
    let longestDinoinMeters = sortedDinos[sortedDinos.length - 1];
    const {name,lengthInMeters} = longestDinoinMeters
    let lengthInfeet = lengthInMeters * 3.281;
@@ -96,8 +96,41 @@ function getDinosaurDescription(dinosaurs, id) {
  *
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
- */
-function getDinosaursAliveMya(dinosaurs, mya, key) {}
+//  */
+ function getDinosaursAliveMya(dinosaurs, mya, key) {
+  
+  let dinoAliveDuringMya = dinosaurs.filter(dino => {
+  const {
+        dinosaurId,
+        name,
+        pronunciation,
+        meaningOfName,
+        diet,
+        lengthInMeters,
+        period,
+        mya,
+        info} = dino
+       if mya  <= mya + 1 && mya[1] >= mya - 1;
+    });//if length of array is only 1 then then see if mya = -1
+      //check for the length because it says so in the commets
+    }
+     // THIS FUNCTION IS MEANT TO BE FOR THE OPTIONAL VALUE KEY//
+
+//     function searchForKey(dinoAliveDuringMya, key) {
+   
+//      for(let i = 0; i < dinoAliveDuringMya.length-1; i++){
+//         if (dinoAliveDuringMya[i].hasOwnProperty(key)) {
+//          return dinoAliveDuringMya[i][key];
+    
+//          }else{
+//            return dinosaurId;
+//          }
+
+
+//        }
+//     }
+ }
+// console.log(getDinosaursAliveMya(exampleDinosaurData));
 
 module.exports = {
   getLongestDinosaur,

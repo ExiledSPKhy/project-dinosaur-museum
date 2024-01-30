@@ -10,17 +10,7 @@ const dinosaurs = [
     mya: [156, 144],
     info: "Allosaurus was an apex predator in the Late Jurassic in North America.",
   },
-  {
-    dinosaurId: "GGvO1X9Zeh",
-    name: "Apatosaurus",
-    pronunciation: "ah-PAT-oh-sore-us",
-    meaningOfName: "deceptive lizard",
-    diet: "herbivorous",
-    lengthInMeters: 21,
-    period: "Late Jurassic",
-    mya: [154, 145],
-    info: "Named the 'deceptive lizard' because its skull was confused with those of other sauropods until 1909.",
-  },
+      
   {
     dinosaurId: "BFjjLjea-O",
     name: "Brachiosaurus",
