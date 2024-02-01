@@ -110,7 +110,7 @@ function getDinosaurDescription(dinosaurs, id) {
         period,
         mya,
         info} = dino
-       if mya  <= mya + 1 && mya[1] >= mya - 1;
+       if mya  <= mya + 1 && mya >= mya - 1;
     });//if length of array is only 1 then then see if mya = -1
       //check for the length because it says so in the commets
     }

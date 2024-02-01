@@ -25,7 +25,31 @@ const exampleRoomData = require("../data/rooms");
  *  getRoomByDinosaurName(dinosaurs, rooms, "Pterodactyl");
  *  //> "Dinosaur with name 'Pterodactyl' cannot be found."
  */
-function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {}
+function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {
+  let dinoObj = dinosaurs.find(singleDino => singleDino.name === dinosaurName);
+
+  if(!dinoObj){
+    return `Dinosaur with name '${dinosaurName}' cannot be found.`;
+  }
+  
+  let dinoId = dinoObj.dinosaurId
+
+  let roomNeed = rooms.find(singleRoom => singleRoom.dinosaurs.includes(dinoId));
+//find the single element in the room array that includes the dinoId
+  return roomNeed ? roomNeed.name : `Dinosaur with name '${dinosaurName}' cannot be found in any rooms.`;
+  }
+  // for(let i = 0; i <= dinosaurs.length; i++){
+  //   if (dinosaurs[i].dinosaurId){
+  //     return name;
+
+  //   }else{ 
+  //     return `Dinosaur with thev name '${dinosaurName}' cannot be found.`
+  // }
+
+  //let destructuredDinos = dinosaurs.map(({dinosaurId, name}) => ({dinosaurId, name}));
+  
+
+
 
 /**
  * getConnectedRoomNamesById()
@@ -38,7 +62,7 @@ function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {}
  *
  * EXAMPLE:
  *  getConnectedRoomNamesById(rooms, "aIA6tevTne");
- *  //> ["Ticket Center"]
+ *  //> ["Ticket Center"]     rooms and roomId
  *
  * EXAMPLE:
  *  getConnectedRoomNamesById(rooms, "A6QaYdyKra");
