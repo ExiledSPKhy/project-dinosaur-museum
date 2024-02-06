@@ -24,6 +24,7 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  //> { Brachiosaurus: 98.43 }
  */
 function getLongestDinosaur(dinosaurs) {
+                       //creates a copy, as to not manipulate the orginal array 
   let sortedDinos = dinosaurs.slice().sort((a,b) => a.lengthInMeters - b.lengthInMeters)
    let longestDinoinMeters = sortedDinos[sortedDinos.length - 1];
    const {name,lengthInMeters} = longestDinoinMeters
@@ -97,40 +98,42 @@ function getDinosaurDescription(dinosaurs, id) {
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
 //  */
- function getDinosaursAliveMya(dinosaurs, mya, key) {
+
+
+function getDinosaursAliveMya(dinosaurs, mya, key) {
+  let arr = []; 
+
+  //The function initializes an empty array arr to store the results.
   
-  let dinoAliveDuringMya = dinosaurs.filter(dino => {
-  const {
-        dinosaurId,
-        name,
-        pronunciation,
-        meaningOfName,
-        diet,
-        lengthInMeters,
-        period,
-        mya,
-        info} = dino
-       if mya  <= mya + 1 && mya >= mya - 1;
-    });//if length of array is only 1 then then see if mya = -1
-      //check for the length because it says so in the commets
-    }
-     // THIS FUNCTION IS MEANT TO BE FOR THE OPTIONAL VALUE KEY//
+  for (let dino of dinosaurs) {
+      let oneDateBool = dino.mya.length === 1 && (dino.mya[0] === mya || dino.mya[0] - 1 === mya);
+      let twoDatesBool = dino.mya.length === 2 && mya >= dino.mya[1] && mya <= dino.mya[0];
+      
+      //It iterates over each dinosaur in the dinosaurs array.
 
-//     function searchForKey(dinoAliveDuringMya, key) {
-   
-//      for(let i = 0; i < dinoAliveDuringMya.length-1; i++){
-//         if (dinoAliveDuringMya[i].hasOwnProperty(key)) {
-//          return dinoAliveDuringMya[i][key];
-    
-//          }else{
-//            return dinosaurId;
-//          }
+      //It checks two conditions (oneDateBool and twoDatesBool) 
+      //related to the mya value and the dinosaur's geological time range.
 
+      if (oneDateBool) {
+        pushToArray(arr, key, dino)
+      } 
+      else if (twoDatesBool) {
+        pushToArray(arr, key, dino)
+      }
+  }//If either condition is true, it calls the pushToArray helper function.
+  return arr;
+}
 
-//        }
-//     }
- }
-// console.log(getDinosaursAliveMya(exampleDinosaurData));
+/// Helper Function
+function pushToArray(arr, key, dino){
+  if (!key || !(key in dino)) {//The helper function checks whether key is falsy(evaluates to false in a boolean or if key is not a property of the dino object.
+    arr.push(dino.dinosaurId);//If true, it pushes the dinosaurId property of the dino object to the arr
+   } 
+  else {
+    arr.push(dino[key]);//If false, it pushes the value of the specified key from the dino object to the arr.
+   }
+}
+console.log(getDinosaursAliveMya(exampleDinosaurData));
 
 module.exports = {
   getLongestDinosaur,

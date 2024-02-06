@@ -26,31 +26,25 @@ const exampleRoomData = require("../data/rooms");
  *  //> "Dinosaur with name 'Pterodactyl' cannot be found."
  */
 function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {
+  
   let dinoObj = dinosaurs.find(singleDino => singleDino.name === dinosaurName);
 
   if(!dinoObj){
     return `Dinosaur with name '${dinosaurName}' cannot be found.`;
   }
-  
-  let dinoId = dinoObj.dinosaurId
+  //if the value/dinosaurName in the parameters does NOT fufill the conditions set in the "dinoObj" function we created on line 29, 
+  //return a message indicatiog a Dinosaur with that name cannot be found.
+  let dinoId = dinoObj.dinosaurId; 
 
   let roomNeed = rooms.find(singleRoom => singleRoom.dinosaurs.includes(dinoId));
 //find the single element in the room array that includes the dinoId
-  return roomNeed ? roomNeed.name : `Dinosaur with name '${dinosaurName}' cannot be found in any rooms.`;
-  }
-  // for(let i = 0; i <= dinosaurs.length; i++){
-  //   if (dinosaurs[i].dinosaurId){
-  //     return name;
-
-  //   }else{ 
-  //     return `Dinosaur with thev name '${dinosaurName}' cannot be found.`
-  // }
-
-  //let destructuredDinos = dinosaurs.map(({dinosaurId, name}) => ({dinosaurId, name}));
+ return roomNeed ? roomNeed.name : `Dinosaur with name '${dinosaurName}' cannot be found in any rooms.`;
+  //(New understanding!)  If room need is a falsy value (due to a posibility a single room with cannot be found) there is a message to indicate such
+ // if it's the correct room(a room that includes the corrosponding dinoId), return the name of the room, 
+  // if it is NOT a room a message indicates that the dinosaur with the specified name cannot be found in any rooms.
   
-
-
-
+  }console.log(getRoomByDinosaurName(exampleDinosaurData, exampleRoomData, "Ouranosaurus"));
+  
 /**
  * getConnectedRoomNamesById()
  * ---------------------
@@ -73,9 +67,30 @@ function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {
       "Kit Hopkins Education Wing"
     ]
  */
-function getConnectedRoomNamesById(rooms, id) {}
 
-module.exports = {
+
+
+    console.log("                                                                        ");
+
+
+
+  function getConnectedRoomNamesById(rooms, id) {
+
+      let roomsConnected = rooms.filter(room => room.connectsTo.includes(id));
+    //illustrates the filter() method being utilized
+    // to create an array of rooms that ALL satisfy the condition of including the "id"
+
+                                      //Maps out each room in the new array created by filter 
+        let connectedRoomNames = roomsConnected.map(room => room.name);
+        //  loops through the array/list of rooms that include id and 
+        // returns the names of those rooms
+        return connectedRoomNames || `Room with ID of '${id}' could not be found.`;
+      }// return the names of rooms connected OR return a statement declaring the issue
+    
+
+
+ console.log(getConnectedRoomNamesById(exampleRoomData, "A6QaYdyKra"))
+  module.exports = {
   getRoomByDinosaurName,
   getConnectedRoomNamesById,
 };

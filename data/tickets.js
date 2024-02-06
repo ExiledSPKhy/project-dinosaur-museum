@@ -1,7 +1,7 @@
 const tickets = {
   general: {
     description: "General Admission",
-    priceInCents: {
+    priceInCents: {// tickets.priceInCents.child
       child: 2000,
       adult: 3000,
       senior: 2500,

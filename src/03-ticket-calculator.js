@@ -5,6 +5,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all tickets.
 */
+const tickets = require("../data/tickets");
 const exampleTicketData = require("../data/tickets");
 // Do not change the line above.
 
@@ -16,7 +17,7 @@ const exampleTicketData = require("../data/tickets");
     ticketType: "general",
     entrantType: "child",
     extras: ["movie"],
-  };
+  };// a list of objects with obects inside of them
  *
  * If either the `ticketInfo.ticketType` value or `ticketInfo.entrantType` value is incorrect, or any of the values inside of the `ticketInfo.extras` key is incorrect, an error message should be returned.
  *
@@ -47,14 +48,71 @@ const exampleTicketData = require("../data/tickets");
 
  * EXAMPLE:
  *  const ticketInfo = {
-      ticketType: "general",
+      ticketType: "general" || "membership" === ticketType
       entrantType: "kid", // Incorrect
       extras: ["movie"],
     };
     calculateTicketPrice(tickets, ticketInfo);
     //> "Entrant type 'kid' cannot be found."
  */
-function calculateTicketPrice(ticketData, ticketInfo) {}
+
+    // const {
+    //   movie: {movieDescription, moviePrices},
+    //   education: {educationDescription, educationPrices },
+    //   terrace: {  terraceDescription,  terracePrices },
+    // } = tickets.extras;
+
+       const{
+         
+       } =tickets.general
+   console.log(tickets.priceInCents.child);
+    //const{ticketType,entrantType,extras:[]} = ticketInfo
+
+function calculateTicketPrice(ticketData, ticketInfo) {
+  //create an array then sum it at the end 
+  ticketSum = 0;
+  
+  function ticketTypeEntrantType(ticketInfo){
+
+  if( ticketInfo.ticketType !== "general" && ticketInfo.ticketType !== "membership" ){
+    return `Ticket type '${ticketInfo.ticketType}' cannot be found.` 
+  }if (ticketInfo.ticketType === "general" && ticketInfo.entrantType === "child"){
+    ticketSum += 2000;
+  }if (ticketInfo.ticketType === "general" && ticketInfo.entrantType === "adult"){
+    ticketSum += 3000;
+  }if(ticketInfo.ticketType === "general" && ticketInfo.entrantType === "senior"){
+    ticketSum += 2500;
+  }if(ticketInfo.ticketType === "membership" && ticketInfo.entrantType === "child"){
+    ticketSum += 1500;
+  }if (ticketInfo.ticketType === "membership" && ticketInfo.entrantType === "adult"){
+    ticketSum += 2800;
+  }else if(ticketInfo.ticketType === "membership" && ticketInfo.entrantType === "senior"){
+    ticketSum += 2300;
+  }
+}
+
+  if(ticketInfo.extras === undefined){ 
+    return;
+  }
+  if(!ticketInfo.extras[tickets.extras[movie]] && !ticketInfo.extras[tickets.extras[education]] && !ticketInfo.extras[tickets.extras[terrace]]){
+      return `"Extra type 'incorrect-extra' cannot be found."`;
+  }
+    else if(ticketInfo.extras[tickets.extras[movie]] && ticketInfo.extras[tickets.extras[education]] && ticketInfo.extras[tickets.extras[terrace]]){
+      ticketSum
+    }
+
+
+
+  if ( ticketInfo.entrantType !== "child" && ticketInfo.entrantType !== "adult" && ticketInfo.entrantType !== "senior"){
+    return `Entrant type '${ticketInfo.entrantType}' cannot be found.`
+  }
+
+ 
+  
+
+  
+  
+}calculateTicketPrice(exampleTicketData);
 
 /**
  * purchaseTickets()
